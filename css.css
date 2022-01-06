@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(105, 174, 197);
+  }
+  h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+  word {
+    height: 500px;
+    line-height: 500px;
+    text-align: center;
+  }
