@@ -17,5 +17,6 @@ func main() {
 }
 
 func Tmp(w http.ResponseWriter, r *http.Request) {
-        io.WriteString(w, "KEKW")
+	http.HandleFunc("/", ShowBooks)    
+	
 }
