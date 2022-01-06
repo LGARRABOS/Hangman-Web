@@ -1,0 +1,1 @@
+{"attempts":9,"word":"ecriture","stock":"roe","asciiart":""}
