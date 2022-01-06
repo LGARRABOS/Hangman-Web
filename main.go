@@ -1,9 +1,10 @@
 package main
 
 import (
-        "io"
+		"html/template"
         "log"
         "net/http"
+		"fmt"
 )
 func main() {
         // Set routing rules
@@ -16,6 +17,10 @@ func main() {
         }
 }
 
-func Tmp(w http.ResponseWriter, r *http.Request) {
-        io.WriteString(w, "KEKW")
+func Tmp(w http.ResponseWriter, r *http.Request) { 
+	tmpl, err := template.ParseFiles("./index.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = tmpl.Execute(w , nil)
 }
