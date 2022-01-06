@@ -11,7 +11,7 @@ func RandomWord() string {
 	rand.Seed(time.Now().UnixNano())
 	var wordtab []string
 	var word string
-	f, err := os.Open(os.Args[1])
+	f, err := os.Open("words.txt")
     if err != nil {
         log.Fatal(err)
     }
@@ -29,5 +29,5 @@ func LetterRandom(mot string, stock *[]byte) string {
 	var letter string
 	letter = string(mot[rand.Intn(len(mot))])
 	*stock = append(*stock, byte(letter[0]))
-	return letter 
+	return letter
 }

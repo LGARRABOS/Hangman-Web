@@ -25,7 +25,7 @@ func main() {
 	tabunderscore := make([]rune, len(word))
 	if len(os.Args) == 4 && os.Args[2] == "--letterFile" {
 		asciiart = os.Args[3]
-	}
+	} 
 	if len(os.Args) == 3 && os.Args[1] == "--startWith" {
 		for i := 0; i < len(stock); i++ {
 			tabunderscore = piscine.Affichagefind(word, string(stock[i]), tabunderscore)
