@@ -1,5 +1,13 @@
 body {
-    background-color: rgb(31, 214, 184);
+  background: rgb(238, 174, 202);
+  background: linear-gradient(
+    90deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%);
+}
+img {
+  
+  text-align: right;
 }
 button {
     background-color: rgba(25, 216, 82, 0.377); 
@@ -9,23 +17,20 @@ button {
     color: rgb(0, 0, 0);
 }
 h1 {
+  height: auto;  
+  line-height: normal;
+  text-align: center;
+  background-color: rgb(20, 160, 200);
+  margin: auto;
+  width: 17%;
+  border: 3px hidden;
+  border-radius: 12px;
+  padding: 5px;
+}
+h2 {
     text-align: center;
 }
-h2{
-    height: auto;  
-    line-height: normal;
-    text-align: center;
-    background-color: rgb(201, 16, 102);
-    margin: auto;
-    width: 17%;
-    border: 3px hidden;
-    border-radius: 12px;
-    padding: 5px;
-}
-h3 {
-    text-align: center;
-}
-.pixelart-to-css {
+.jose {
     position: absolute;
     animation: x 2.0s infinite;
     -webkit-animation: x 2.0s infinite;
