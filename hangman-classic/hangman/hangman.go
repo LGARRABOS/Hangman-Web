@@ -1,12 +1,12 @@
-package main
+package hangman
 
 import (
 	"fmt"
 	"os"
-	"piscine"
+	piscine "hangman/hangman-classic/function"
 )
 
-func main() {
+func Hangman() {
 	attempts := 10
 	lattempts := attempts
 	var choice string
