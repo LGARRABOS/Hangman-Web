@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(31, 214, 184);
+}
+h1 {
+    text-align: center;
+}
+h2{
+    height: auto;  
+    line-height: normal;
+    text-align: center;
+    background-color: rgb(201, 16, 102);
+    margin: auto;
+    width: 17%;
+    border: 3px hidden;
+    border-radius: 12px;
+    padding: 5px;
+}
+h3 {
+    text-align: center;
+}
