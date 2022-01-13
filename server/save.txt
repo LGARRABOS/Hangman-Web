@@ -1,1 +1,1 @@
-{"attempts":10,"word":"lecture","stock":"t","asciiart":""}
+{"attempts":10,"word":"poubelle","stock":"p","asciiart":""}
