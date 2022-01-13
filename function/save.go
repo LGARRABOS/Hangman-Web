@@ -4,7 +4,6 @@ import (
 	"os"
 	"encoding/json"
 	"log"
-
 )
 
 type Save struct {
@@ -33,7 +32,7 @@ func Encod(a int, w string, s []byte, ascii string) {
 func Decod() (int, string, []byte, string) {
 	var restore Save
 	var stock []byte
-	json_data, err := os.ReadFile(os.Args[2])
+	json_data, err := os.ReadFile("save.txt")
 	if err != nil {
     	log.Fatal(err)
     }
