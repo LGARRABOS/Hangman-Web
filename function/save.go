@@ -14,6 +14,7 @@ type Save struct {
 }
 
 func Encod(a int, w string, s []byte, ascii string) {
+	
 	use := ""
 	for i:= 0; i < len(s); i++ {
 		use = use + string(s[i])

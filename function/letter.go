@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func AllVerif(choice string, stock *[]byte, word string) bool {
+func AllVerif(choice string, stock *[]byte, word string) bool {	
 	if Verif_taille(choice, word) {
 		if Verif_letter(choice) {
 			if Lettre_utiliser(&*stock, choice) {
@@ -16,6 +16,7 @@ func AllVerif(choice string, stock *[]byte, word string) bool {
 			fmt.Println("Your argument can only contain a lowercase letter")
 		}
 	} else {
+		fmt.Println(choice, " ", word)
 		if len(word) != len(choice) {
 			fmt.Println("Your argument contains too many letters or not enough")
 		}

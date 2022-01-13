@@ -14,29 +14,30 @@
 
 <body>
     <h1>
-        Se situeras dans le coins le mot à deviner.
+        {{ .TabUnderscore }}
     </h1>
     <h2>
-        You have <...> attempts remaining
+        You have {{ .Attempts }} attempts remaining
     </h2>
     <p>
 
     </p>
-    <div class="Button">
-        <input type="text" placeholder="Choose a letter...">
-    </div>
-    <p>
+    <form method="POST" action="/">
+        <div class="Button">
+            <input type="text" placeholder="Choose a letter...">
+        </div>
+        <p>
 
-    </p>
-    <button>
-        Envoyer
-    </button>
+        </p>
+        <button>
+            Envoyer
+        </button>
     </form>
-    <p>
-        {{ .LetterChoose }}
-        {{ .Won }}
-    </p>
-
+    <form method="POST2" action="/">
+        <button>
+            start
+        </button>
+    </form>
 </body>
 
 </html>

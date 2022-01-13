@@ -15,25 +15,28 @@ type Data struct {
 }
 
 func main() {
+	fmt.Println(" je suis la")
 	http.HandleFunc("/", Handler)
-
-	fs := http.FileServer(http.Dir("./static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	
-
 	http.HandleFunc("/hangman", Handler)
 	http.ListenAndServe(":8080", nil)
+	fs := http.FileServer(http.Dir("static/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 }
+var (
+	start bool = true
+	c int = 0
+	letter = ""
+	hidden_word string
+	attempts int
+	win bool
+	won = ""
+)
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	
 
 	tmpl := template.Must(template.ParseFiles("../index.html"))
-	letter := ""
-	var hidden_word string
-	var attempts int
-	var win bool
-	won := ""
-	start := true
+	
 	switch r.Method {
 	case "GET" :
 		fmt.Println("GET METHOD")
@@ -45,14 +48,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("POST METHOD = %v\n", r.PostForm)
 		m := r.PostForm
 		l := m["letter"]
-		letter = l[0]	
-		if start {
-			hidden_word, attempts, win = hangman.Hangman(letter, true)
-			start = false
+		if len(l) > 0 {
+			letter = l[0]
 		}
+		if start {
+			fmt.Println(letter)
+			hidden_word, attempts, win = hangman.Hangman(letter, true )
+			start = false
+		} else {
+			fmt.Println(letter)
+			hidden_word, attempts, win = hangman.Hangman(letter, false)
+		} 
+		
 	}
+	c++
 	if win {
 		won = "Congrats !"
+		start = true
 	}
 	data := Data {
 		LetterChoose: letter,
@@ -60,6 +72,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		TabUnderscore: hidden_word,
 		Won: won,
 	}
-	fmt.Println(hidden_word, attempts, win)
+	fmt.Println(hidden_word, attempts, win, c)
 	tmpl.Execute(w, data)
 }

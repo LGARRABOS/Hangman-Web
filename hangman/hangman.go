@@ -8,12 +8,12 @@ import (
 func Hangman(letter string, start bool) (string, int, bool) {
 	attempts := 10
 	lattempts := attempts
-	var choice string
 	c := 0
 	var stock []byte
 	word := ""
 	asciiart := ""
 	hidden_word := ""
+	fmt.Println(letter)
 	if !start {
 		attempts, word, stock, asciiart = piscine.Decod()
 		fmt.Println("Welcome back, you have", attempts, " attempts.")
@@ -39,9 +39,9 @@ func Hangman(letter string, start bool) (string, int, bool) {
 		return hidden_word, attempts, false
 	}
 	c = 0
-	if piscine.AllVerif(choice, &stock, word) {
-		if piscine.Verif_letter_in_word(word, choice) {
-			tabunderscore = piscine.Affichagefind(word, choice, tabunderscore)
+	if piscine.AllVerif(letter, &stock, word) {
+		if piscine.Verif_letter_in_word(word, letter) {
+			tabunderscore = piscine.Affichagefind(word, letter, tabunderscore)
 			hidden_word = piscine.LetterType(tabunderscore, asciiart)
 			piscine.PrintHangmanError(attempts, &lattempts)
 			for i := 0; i < len(word); i++ {
@@ -58,8 +58,8 @@ func Hangman(letter string, start bool) (string, int, bool) {
 			fmt.Println("Congrats !")
 			return hidden_word, attempts, true
 		}
-	} else if len(choice) == len(word) {
-		if piscine.Complet_word(word, choice) {
+	} else if len(letter) == len(word) {
+		if piscine.Complet_word(word, letter) {
 			for i := 0; i < len(word); i++ {
 				tabunderscore[i] = rune(word[i])
 			}
@@ -74,6 +74,7 @@ func Hangman(letter string, start bool) (string, int, bool) {
 			piscine.PrintHangmanError(attempts, &lattempts)
 		}
 	}
+	start = false
 	piscine.Encod(attempts, word, stock, asciiart)
 	return hidden_word, attempts, false
 }
