@@ -2,35 +2,41 @@
 
 <html>
 
-    <head>
+<head>
 
-      <title>Hangman Web game</title>
+    <title>Hangman Web game</title>
 
-      <meta charset="utf-8">
+    <meta charset="utf-8">
 
-      <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="static/index.css">
 
-    </head>
+</head>
 
-    <body>
-        <h1>
-            Se situeras dans le coins le mot à deviner.
-        </h1>
-        <h2>
-            You have <...> attempts remaining
-        </h2>
-        <p>
+<body>
+    <h1>
+        Se situeras dans le coins le mot à deviner.
+    </h1>
+    <h2>
+        You have <...> attempts remaining
+    </h2>
+    <p>
 
-        </p>
-        <div class="Button">
-            <input type="text" placeholder="Choose a letter...">
-          </div> 
-          <p>
+    </p>
+    <div class="Button">
+        <input type="text" placeholder="Choose a letter...">
+    </div>
+    <p>
 
-          </p>
-        <button
-            style="color:rgb(255, 255, 255);">Envoyer
-        </button>
-    </body>
+    </p>
+    <button>
+        Envoyer
+    </button>
+    </form>
+    <p>
+        {{ .LetterChoose }}
+        {{ .Won }}
+    </p>
+
+</body>
 
 </html>
