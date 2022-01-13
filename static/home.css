@@ -17,18 +17,19 @@ button {
     color: rgb(0, 0, 0);
 }
 h1 {
-  height: auto;  
-  line-height: normal;
   text-align: center;
-  margin: auto;
-  width: 17%;
-  border: 3px hidden;
-  border-radius: 12px;
-  padding: 5px;
 }
 h2 {
     text-align: center;
 }
+.hard {
+  width: 200px;
+  position:absolute;
+  top: 50%;
+  right: 10%;
+  transform: translate(0%, -50%);
+}
+
 .jose {
     position: absolute;
     animation: x 2.0s infinite;
