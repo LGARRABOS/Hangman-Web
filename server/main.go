@@ -26,7 +26,6 @@ func main() {
 }
 var (
 	start bool = true
-	c int = 0
 	letter = ""
 	hidden_word string
 	attempts int
@@ -54,16 +53,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			letter = l[0]
 		}
 		if start {
-			fmt.Println(letter)
 			hidden_word, attempts, win = hangman.Hangman(letter, true )
 			start = false
 		} else {
-			fmt.Println(letter)
 			hidden_word, attempts, win = hangman.Hangman(letter, false)
 		} 
 		
 	}
-	c++
 	if win {
 		won = "Congrats !"
 		start = true
@@ -74,6 +70,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		TabUnderscore: hidden_word,
 		Won: won,
 	}
-	fmt.Println(hidden_word, attempts, win, c)
 	tmpl.Execute(w, data)
 }
