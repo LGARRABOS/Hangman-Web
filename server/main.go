@@ -15,12 +15,14 @@ type Data struct {
 }
 
 func main() {
-	fmt.Println(" je suis la")
 	http.HandleFunc("/", Handler)
-	http.HandleFunc("/hangman", Handler)
-	http.ListenAndServe(":8080", nil)
+
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	
+	http.HandleFunc("/hangman", Handler)
+	http.ListenAndServe(":8080", nil)
+
 }
 var (
 	start bool = true
