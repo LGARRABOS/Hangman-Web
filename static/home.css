@@ -29,8 +29,15 @@ h2 {
   right: 20%;
   transform: translate(0%, -50%);
 }
+.golang {
+  width: 200px;
+  position:absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-150%, -50%);
+}
 
-.jose {
+jose {
     position: absolute;
     animation: x 2.0s infinite;
     -webkit-animation: x 2.0s infinite;
