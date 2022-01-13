@@ -33,7 +33,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	var attempts int
 	var win bool
 	won := ""
-	c := 0;
+	start := true
 	switch r.Method {
 	case "GET" :
 		fmt.Println("GET METHOD")
@@ -46,13 +46,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		m := r.PostForm
 		l := m["letter"]
 		letter = l[0]	
-		if 	
-	}
-	if len(letter) == 0  {
-		hidden_word, attempts, win = hangman.Hangman(letter, true)
-		letter = " "
-	} else {
-		hidden_word, attempts, win = hangman.Hangman(letter, false)
+		if start {
+			hidden_word, attempts, win = hangman.Hangman(letter, true)
+			start = false
+		}
 	}
 	if win {
 		won = "Congrats !"
