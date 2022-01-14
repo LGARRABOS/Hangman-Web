@@ -1,1 +1,1 @@
-{"attempts":10,"word":"mur","stock":"mu","asciiart":""}
+{"attempts":10,"word":"cle","stock":"ec","asciiart":""}
