@@ -9,32 +9,84 @@ img {
   
   text-align: right;
 }
-button {
-    background-color: rgba(25, 216, 82, 0.377); 
-    width: 150px;  
-    height: 50px;
-    font-size: 25px;
-    color: rgb(0, 0, 0);
+.easy {
+	box-shadow:inset 0px 1px 0px 0px #caefab;
+	background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	background-color:#77d42a;
+	border-radius:6px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:21px;
+	font-weight:bold;
+	padding:11px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #aade7c;
 }
+.easy:hover {
+	background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background-color:#5cb811;
+}
+.easy:active {
+	position:relative;
+	top:1px;
+}
+.medium {
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+	background-color:#ffc477;
+	border-radius:6px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:21px;
+	font-weight:bold;
+	padding:11px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc9f52;
+}
+.medium:hover {
+	background:linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+	background-color:#fb9e25;
+}
+.medium:active {
+	position:relative;
+	top:1px;
+}
+.hard {
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+	background-color:#fe1a00;
+	border-radius:6px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:21px;
+	font-weight:bold;
+	padding:11px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.hard:hover {
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	background-color:#ce0100;
+}
+.hard:active {
+	position:relative;
+	top:1px;
+}
+
 h1 {
   text-align: center;
 }
 h2 {
     text-align: center;
-}
-.hard {
-  width: 200px;
-  position:absolute;
-  top: 50%;
-  right: 20%;
-  transform: translate(0%, -50%);
-}
-.golang {
-  width: 200px;
-  position:absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(-150%, -50%);
 }
 
 jose {
