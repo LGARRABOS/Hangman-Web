@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	hangman "hangman/hangman"
+	h "hangman/hangman"
 	"html/template"
 	"net/http"
 )
@@ -32,15 +32,16 @@ var (
 	attempts    int
 	win         bool
 	won         = ""
+	word        = ""
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 
-	tmpl := template.Must(template.ParseFiles("../final.html"))
+	home := template.Must(template.ParseFiles("../home.html"))
+	hangman := template.Must(template.ParseFiles("../hangman.html"))
 
 	switch r.Method {
 	case "GET":
-		fmt.Println("GET METHOD")
 	case "POST":
 		if err := r.ParseForm(); err != nil {
 			fmt.Fprintf(w, "ParseForm() err: %v", err)
@@ -49,16 +50,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("POST METHOD = %v\n", r.PostForm)
 		m := r.PostForm
 		l := m["letter"]
-		if len(l) > 0 {
-			letter = l[0]
-		}
-		if start {
-			hidden_word, attempts, win = hangman.Hangman(letter, true)
+		level := m["level"]
+		if len(level) != 0 {
+			if level[0] == "easy" {
+				word = "words.txt"
+			} else if level[0] == "medium" {
+				word = "words2.txt"
+			} else {
+				word = "words3.txt"
+			}
+			hidden_word, attempts, win, won = h.Hangman(letter, true, word)
 			start = false
 		} else {
-			hidden_word, attempts, win = hangman.Hangman(letter, false)
+			if len(l) > 0 {
+				letter = l[0]
+			}
+			hidden_word, attempts, win, won = h.Hangman(letter, false, word)
 		}
-
 	}
 	if win {
 		won = "Congrats !"
@@ -74,5 +82,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		TabUnderscore: hidden_word,
 		Won:           won,
 	}
-	tmpl.Execute(w, data)
+	if start {
+		home.Execute(w, data)
+	} else {
+		hangman.Execute(w, data)
+	}
+
 }
