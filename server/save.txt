@@ -1,1 +1,1 @@
-{"attempts":10,"word":"mur","stock":"u","asciiart":""}
+{"attempts":9,"word":"porte","stock":"ef","asciiart":""}
