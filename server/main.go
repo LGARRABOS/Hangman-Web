@@ -32,14 +32,13 @@ var (
 	attempts    int
 	win         bool
 	won         = ""
-	word 		= ""
+	word        = ""
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 
 	home := template.Must(template.ParseFiles("../home.html"))
-	hangman := template.Must(template.ParseFiles("../index.html"))
-
+	hangman := template.Must(template.ParseFiles("../hangman.html"))
 
 	switch r.Method {
 	case "GET":
@@ -52,7 +51,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		m := r.PostForm
 		l := m["letter"]
 		level := m["level"]
-		if len(level) !=  0 {
+		if len(level) != 0 {
 			if level[0] == "easy" {
 				word = "words.txt"
 			} else if level[0] == "medium" {
@@ -84,7 +83,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		Won:           won,
 	}
 	if start {
-		home.Execute(w, data)		
+		home.Execute(w, data)
 	} else {
 		hangman.Execute(w, data)
 	}
