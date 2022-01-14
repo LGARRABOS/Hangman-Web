@@ -1,0 +1,64 @@
+body {
+    background: rgb(238, 174, 202);
+    background: linear-gradient(
+      90deg,
+      rgba(238, 174, 202, 1) 0%,
+      rgba(148, 187, 233, 1) 100%
+    );
+    text-align: center;
+  }
+h1 {
+    text-align: center;
+}
+#CREDIT {
+color: #131313;
+letter-spacing: .15em;
+color: #131313;
+font-size: 35px;
+text-align: center;
+position: relative;
+top: 50%;
+transform: perspective(1px) translateY(800%);
+}
+#credit {
+  color: #FFFFFF;
+  text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+  color: #FFFFFF;
+  font-size: 25px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(300%);
+}
+
+.start {
+	box-shadow:inset 0px 1px 0px 0px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:42px;
+	border:3px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Impact;
+	font-size:28px;
+	font-weight:bold;
+	padding:11px 76px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(300%);
+}
+.start:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.start:active {
+	position:relative;
+	top:1px;
+}
+.but {
+  margin: 0 auto;
+  width: 100px;
+}
