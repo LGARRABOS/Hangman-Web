@@ -16,12 +16,15 @@ type Data struct {
 
 func main() {
 	http.HandleFunc("/", Handler)
+	http.HandleFunc("/hangman", Handler)
 
-	fs := http.FileServer(http.Dir("static/"))
+			
+	fs := http.FileServer(http.Dir("../static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	
-	http.HandleFunc("/hangman", Handler)
+
 	http.ListenAndServe(":8080", nil)
+
 
 }
 var (
@@ -34,9 +37,8 @@ var (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	
 
-	tmpl := template.Must(template.ParseFiles("../index.html"))
+	tmpl := template.Must(template.ParseFiles("../static/index.html"))
 	
 	switch r.Method {
 	case "GET" :
@@ -64,6 +66,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		won = "Congrats !"
 		start = true
 	}
+	if attempts <= 0 {
+		won = "The poor José is dead because of you !"
+		start = true
+	} 
 	data := Data {
 		LetterChoose: letter,
 		Attempts: attempts,
