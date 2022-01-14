@@ -19,20 +19,21 @@
     <h2>
         You have {{ .Attempts }} attempts remaining
     </h2>
-    <div style="width:300px">
-        </divstyle>></div>
-    <form method="POST" action="/">
+    <div style="width:300px"></div>
+    <form method="POST" action="/index.html">
         <div class="topnav">
             <input type="text" placeholder="Choose a letter.." name="letter">
         </div>
-        <div style="width:300px">
-            </divstyle>></div>
+        <div style="width:300px"></div>
         <button href="#" class="myButton">
             Envoyer
         </button>
     </form>
-    <div style="width:300px">
-        </divstyle>></div>
+    <div style="width:300px"></div>
+    <h3>
+        {{ .Won }}
+    </h3>
+
 </body>
 
 </html>

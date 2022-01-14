@@ -7,11 +7,11 @@ import (
 	"os"
 	"time"
 )
-func RandomWord() string {
+func RandomWord(word string) string {
 	rand.Seed(time.Now().UnixNano())
 	var wordtab []string
-	var word string
-	f, err := os.Open("../function/words.txt")
+	path := "../function/" + word
+	f, err := os.Open(path)
     if err != nil {
         log.Fatal(err)
     }
