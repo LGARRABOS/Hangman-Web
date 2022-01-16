@@ -7,14 +7,16 @@
 
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/final.css">
-
 </head>
-
 
 <body>
     <h1>
-        You ... , The word to find was "{{ .WordToFind}}" .
+        Scoreboard
+    </h1>
+    {{range .UsrList }}
+    {{ . }}
+    <br></br>
+    {{end}}
     </h1>
     <form method="POST" action="/">
         <h2> For start a new game, push this button </h2>
@@ -22,10 +24,5 @@
 
         <h2>For return to the menu, push this button</h2>
         <button href="/difficulty" class="menu" name="redir" value="home">menu </button>
-
-        <h2>For return to the menu, push this button</h2>
-        <button href="/difficulty" class="menu" name="redir" value="scoreboard">scoreboard </button>
     </form>
-
 </body>
-<img src="{{ .Image }}" class="pendu">

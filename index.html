@@ -28,14 +28,16 @@
         <button href="/hangman" class="myButton">
             Envoyer
         </button>
+
+        <div style="width:300px"></div>
+        <h3>
+            {{ .Won }}
+        </h3>
+        <h4>
+            {{ .Used }}
+        </h4>
+        <img src="{{ .Image }}" height="350px" width="200px">
     </form>
-    <div style="width:300px"></div>
-    <h3>
-        {{ .Won }}
-    </h3>
-    <h4>
-        {{ .Used }}
-    </h4>
 
 </body>
 

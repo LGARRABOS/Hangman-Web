@@ -16,6 +16,7 @@ type Data struct {
 	Used string
 	WordToFind string
 	UsrList []string
+	Image string
 }
 
 func main() {
@@ -33,13 +34,16 @@ var (
 	start       = 0
 	letter      = ""
 	hidden_word string
-	attempts    = 10
 	won         = ""
 	word 		= ""
 	user string
 	findword string
 	userlist []string
-	
+	attlist []int
+	wordlist []string
+	result []string
+	img string
+	imgpath = false
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -48,10 +52,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	hangman := template.Must(template.ParseFiles("../index.html"))
 	accueil := template.Must(template.ParseFiles("../accueil.html"))
 	end := template.Must(template.ParseFiles("../final.html"))
+	score := template.Must(template.ParseFiles("../scoreboard.html"))
 	
 	win := false
 	letter := ""
 	stock := ""
+	attempts := 10
 
 	switch r.Method {
 	case "GET":
@@ -64,8 +70,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		m := r.PostForm
 		l := m["letter"]
 		level := m["level"]
-		redir := m ["redir"]
-		
+		redir := m ["redir"]	
 		if len(redir) != 0 {
 			if redir[0] == "accueil" {
 				start = 0
@@ -75,6 +80,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 				if len(usr) != 0 {
 					user = usr[0]
 				}
+			} else if redir[0] == "scoreboard" {
+				start = 4
 			}
 		} 
 		if len(level) !=  0  {
@@ -87,24 +94,28 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			}
 			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, true, word, user)
 			start = 2
+			img = piscine.ChooseImage(attempts)
+			imgpath = true
 		}
 		if len(l) > 0 {
 			letter = l[0]
 			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, false, word, user)
+			img = piscine.ChooseImage(attempts)
+			imgpath = true
 		}
 		
 		if win {
 			won = "Congrats !"
 			start = 3
-			userlist, attlist, wordlist := piscine.AddScore(user, attempts, findword)
-			fmt.Println(userlist, attlist, wordlist)
+			userlist, attlist, wordlist = piscine.AddScore(user, attempts, findword)
+			result = piscine.Result(userlist, attlist, wordlist)
 		}
 		if attempts <= 0 {
 			won = "The poor José is dead because of you !"
 			start = 3
-			userlist, attlist, wordlist := piscine.AddScore(user, attempts, findword)
+			userlist, attlist, wordlist = piscine.AddScore(user, attempts, findword)
 			fmt.Println(userlist, attlist, wordlist)
-
+			result = piscine.Result(userlist, attlist, wordlist)
 		}
 	}
 	data := Data{
@@ -114,7 +125,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		Won:           won,
 		Used: stock,
 		WordToFind: findword,
-		UsrList: userlist,
+		UsrList: result,
+		Image: img,
 	}
 	if start == 0 {
 		accueil.Execute(w, data)
@@ -124,5 +136,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		hangman.Execute(w, data)
 	} else if start == 3 {
 		end.Execute(w, data)
+	} else if start  == 4 {
+		score.Execute(w, data)
 	}
+	
 }
