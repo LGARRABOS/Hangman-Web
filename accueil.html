@@ -3,17 +3,20 @@
 
 <head>
 
-  <title>Hangman Web home</title>
+    <title>Hangman Web home</title>
 
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <link rel="stylesheet" href="/static/acceuil.css">
+    <link rel="stylesheet" href="/static/acceuil.css">
 
 </head>
+
 <body>
     <h1> Hangman Web </h1>
     <div id="but">
-    <button href="#" class="start">START</button>
+        <form method="POST" action="/hangman">
+            <button href="/difficulty" class="start" name="redir" value="home">START</button>
+        </form>
     </div>
     <div id="CREDIT">
         CREDIT

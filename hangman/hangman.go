@@ -5,7 +5,7 @@ import (
 	piscine "hangman/function"
 )
 
-func Hangman(letter string, start bool, w string) (string, int, bool, string) {
+func Hangman(letter string, start bool, w string) (string, int, bool, string, string) {
 	attempts := 10
 	lattempts := attempts
 	c := 0
@@ -14,6 +14,7 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string) {
 	asciiart := ""
 	hidden_word := ""
 	won := ""
+	used := ""
 	fmt.Println(letter)
 	if !start {
 		attempts, word, stock, asciiart = piscine.Decod()
@@ -37,7 +38,8 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string) {
 		hidden_word = piscine.LetterType(tabunderscore, asciiart)
 		piscine.PrintHangmanError(attempts, &lattempts, letter, &won)
 		piscine.Encod(attempts, word, stock, asciiart)
-		return hidden_word, attempts, false, won
+		used = piscine.TabToString(stock)
+		return hidden_word, attempts, false, won, used
 	}
 	c = 0
 	if piscine.AllVerif(letter, &stock, word, &won) {
@@ -57,7 +59,8 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string) {
 		}
 		if c == len(word) {
 			fmt.Println("Congrats !")
-			return hidden_word, attempts, true, won
+			hidden_word = piscine.Glue(hidden_word, attempts, true)
+			return hidden_word, attempts, true, won, used
 		}
 	} else if len(letter) == len(word) {
 		if piscine.Complet_word(word, letter) {
@@ -68,14 +71,17 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string) {
 			piscine.PrintHangmanError(attempts, &lattempts, letter, &won)
 			fmt.Println("\n")
 			fmt.Println("Congrats !")
-			return hidden_word, attempts, true, won
+			hidden_word = piscine.Glue(hidden_word, attempts, true)
+			return hidden_word, attempts, true, won, used
 		} else {
 			attempts -= 2
 			hidden_word = piscine.LetterType(tabunderscore, asciiart)
 			piscine.PrintHangmanError(attempts, &lattempts, letter, &won)
 		}
 	}
+	hidden_word = piscine.Glue(hidden_word, attempts, false)
 	start = false
 	piscine.Encod(attempts, word, stock, asciiart)
-	return hidden_word, attempts, false, won
+	used = piscine.TabToString(stock)
+	return hidden_word, attempts, false, won, used
 }

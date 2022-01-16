@@ -12,6 +12,7 @@ type Data struct {
 	Attempts      int
 	TabUnderscore string
 	Won           string
+	Used string
 }
 
 func main() {
@@ -30,7 +31,7 @@ var (
 	letter      = ""
 	hidden_word string
 	attempts    = 10
-	win         bool
+	
 	won         = ""
 	word 		= ""
 )
@@ -41,6 +42,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	hangman := template.Must(template.ParseFiles("../index.html"))
 	accueil := template.Must(template.ParseFiles("../accueil.html"))
 	end := template.Must(template.ParseFiles("../final.html"))
+	
+	win := false
+	letter := ""
+	stock := ""
 
 	switch r.Method {
 	case "GET":
@@ -69,13 +74,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			} else {
 				word = "words3.txt"
 			}
-			hidden_word, attempts, win, won = h.Hangman(letter, true, word)
+			hidden_word, attempts, win, won, stock = h.Hangman(letter, true, word)
 			start = 2
 		}
 		if len(l) > 0 {
 			
 			letter = l[0]
-			hidden_word, attempts, win, won = h.Hangman(letter, false, word)
+			hidden_word, attempts, win, won, stock = h.Hangman(letter, false, word)
 		}
 		
 		if win {
@@ -93,8 +98,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		Attempts:      attempts,
 		TabUnderscore: hidden_word,
 		Won:           won,
+		Used: stock,
 	}
-	letter = ""
 	win = false
 	if start == 0 {
 		accueil.Execute(w, data)

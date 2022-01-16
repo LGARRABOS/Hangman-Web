@@ -1,1 +1,1 @@
-{"attempts":10,"word":"coin","stock":"n","asciiart":""}
+{"attempts":5,"word":"matelas","stock":"tmopksqrl","asciiart":""}
