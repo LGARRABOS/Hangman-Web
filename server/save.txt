@@ -1,1 +1,1 @@
-{"attempts":10,"word":"moustique","stock":"m","asciiart":""}
+{"attempts":10,"word":"coin","stock":"n","asciiart":""}

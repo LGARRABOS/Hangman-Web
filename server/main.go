@@ -29,7 +29,7 @@ var (
 	start       = 0
 	letter      = ""
 	hidden_word string
-	attempts    int
+	attempts    = 10
 	win         bool
 	won         = ""
 	word 		= ""
@@ -58,10 +58,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			if redir[0] == "accueil" {
 				start = 0
 			} else if redir[0] == "home" {
-				fmt.Println("85")
-				
 				start = 1
-				fmt.Println("81")
 			}
 		} 
 		if len(level) !=  0 {
@@ -76,15 +73,17 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			start = 2
 		}
 		if len(l) > 0 {
+			
 			letter = l[0]
+			hidden_word, attempts, win, won = h.Hangman(letter, false, word)
 		}
-		hidden_word, attempts, win, won = h.Hangman(letter, false, word)
 		
 		if win {
 			won = "Congrats !"
 			start = 3
 		}
 		if attempts <= 0 {
+			fmt.Println(attempts)
 			won = "The poor José is dead because of you !"
 			start = 3
 		}
@@ -96,6 +95,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		Won:           won,
 	}
 	letter = ""
+	win = false
 	if start == 0 {
 		accueil.Execute(w, data)
 	} else if start == 1 {
