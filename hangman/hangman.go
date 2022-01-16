@@ -5,7 +5,7 @@ import (
 	piscine "hangman/function"
 )
 
-func Hangman(letter string, start bool, w string) (string, int, bool, string, string) {
+func Hangman(letter string, start bool, w string, user string) (string, int, bool, string, string, string) {
 	attempts := 10
 	lattempts := attempts
 	c := 0
@@ -39,7 +39,13 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string, st
 		piscine.PrintHangmanError(attempts, &lattempts, letter, &won)
 		piscine.Encod(attempts, word, stock, asciiart)
 		used = piscine.TabToString(stock)
-		return hidden_word, attempts, false, won, used
+		var userlist []string
+		var attlist []int
+		var wordlist []string
+		userlist = append(userlist, user)
+		attlist = append(attlist, attempts)
+		wordlist = append(wordlist, word)
+		return hidden_word, attempts, false, won, used, word
 	}
 	c = 0
 	if piscine.AllVerif(letter, &stock, word, &won) {
@@ -59,8 +65,7 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string, st
 		}
 		if c == len(word) {
 			fmt.Println("Congrats !")
-			hidden_word = piscine.Glue(hidden_word, attempts, true)
-			return hidden_word, attempts, true, won, used
+			return hidden_word, attempts, true, won, used, word
 		}
 	} else if len(letter) == len(word) {
 		if piscine.Complet_word(word, letter) {
@@ -71,17 +76,15 @@ func Hangman(letter string, start bool, w string) (string, int, bool, string, st
 			piscine.PrintHangmanError(attempts, &lattempts, letter, &won)
 			fmt.Println("\n")
 			fmt.Println("Congrats !")
-			hidden_word = piscine.Glue(hidden_word, attempts, true)
-			return hidden_word, attempts, true, won, used
+			return hidden_word, attempts, true, won, used, word
 		} else {
 			attempts -= 2
 			hidden_word = piscine.LetterType(tabunderscore, asciiart)
 			piscine.PrintHangmanError(attempts, &lattempts, letter, &won)
 		}
 	}
-	hidden_word = piscine.Glue(hidden_word, attempts, false)
 	start = false
 	piscine.Encod(attempts, word, stock, asciiart)
 	used = piscine.TabToString(stock)
-	return hidden_word, attempts, false, won, used
+	return hidden_word, attempts, false, won, used, word
 }

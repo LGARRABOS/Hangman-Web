@@ -5,6 +5,7 @@ import (
 	h "hangman/hangman"
 	"html/template"
 	"net/http"
+	piscine "hangman/function"
 )
 
 type Data struct {
@@ -13,6 +14,8 @@ type Data struct {
 	TabUnderscore string
 	Won           string
 	Used string
+	WordToFind string
+	UsrList []string
 }
 
 func main() {
@@ -31,9 +34,12 @@ var (
 	letter      = ""
 	hidden_word string
 	attempts    = 10
-	
 	won         = ""
 	word 		= ""
+	user string
+	findword string
+	userlist []string
+	
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -59,14 +65,19 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		l := m["letter"]
 		level := m["level"]
 		redir := m ["redir"]
+		
 		if len(redir) != 0 {
 			if redir[0] == "accueil" {
 				start = 0
 			} else if redir[0] == "home" {
 				start = 1
+				usr := m["username"]
+				if len(usr) != 0 {
+					user = usr[0]
+				}
 			}
 		} 
-		if len(level) !=  0 {
+		if len(level) !=  0  {
 			if level[0] == "easy" {
 				word = "words.txt"
 			} else if level[0] == "medium" {
@@ -74,23 +85,26 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			} else {
 				word = "words3.txt"
 			}
-			hidden_word, attempts, win, won, stock = h.Hangman(letter, true, word)
+			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, true, word, user)
 			start = 2
 		}
 		if len(l) > 0 {
-			
 			letter = l[0]
-			hidden_word, attempts, win, won, stock = h.Hangman(letter, false, word)
+			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, false, word, user)
 		}
 		
 		if win {
 			won = "Congrats !"
 			start = 3
+			userlist, attlist, wordlist := piscine.AddScore(user, attempts, findword)
+			fmt.Println(userlist, attlist, wordlist)
 		}
 		if attempts <= 0 {
-			fmt.Println(attempts)
 			won = "The poor José is dead because of you !"
 			start = 3
+			userlist, attlist, wordlist := piscine.AddScore(user, attempts, findword)
+			fmt.Println(userlist, attlist, wordlist)
+
 		}
 	}
 	data := Data{
@@ -99,8 +113,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		TabUnderscore: hidden_word,
 		Won:           won,
 		Used: stock,
+		WordToFind: findword,
+		UsrList: userlist,
 	}
-	win = false
 	if start == 0 {
 		accueil.Execute(w, data)
 	} else if start == 1 {
