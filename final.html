@@ -14,14 +14,14 @@
 
 <body>
     <h1>
-        You ... , The word to find was "{{ .WordToFind}}" .
+        You {{ .Won }} , The word to find was "{{ .WordToFind}}" .
     </h1>
     <form method="POST" action="/">
         <h2> For start a new game, push this button </h2>
-        <button href="/" class="restart" name="redir" value="accueil">restart</button>
+        <button href="/" class="restart" name="redir" value="accueil">choose username</button>
 
         <h2>For return to the menu, push this button</h2>
-        <button href="/difficulty" class="menu" name="redir" value="home">menu </button>
+        <button href="/difficulty" class="menu" name="redir" value="home">choose difficulty</button>
 
         <h2>For return to the menu, push this button</h2>
         <button href="/difficulty" class="menu" name="redir" value="scoreboard">scoreboard </button>
