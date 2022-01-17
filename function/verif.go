@@ -10,7 +10,7 @@ func Verif_letter_in_word(word string, choice string) bool {
 }
 
 func Verif_letter(choice string) bool {
-	if choice[0] < 123 && choice[0] > 97 {
+	if choice[0] < 123 && choice[0] > 96 {
 		return true
 	}
 	return false
