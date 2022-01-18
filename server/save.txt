@@ -1,1 +1,1 @@
-{"attempts":0,"word":"lecture","stock":"ugfdsezjklmnb","asciiart":""}
+{"attempts":0,"word":"notais","stock":"o","asciiart":""}
