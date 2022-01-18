@@ -1,1 +1,1 @@
-{"attempts":10,"word":"escalier","stock":"re","asciiart":""}
+{"attempts":5,"word":"mousse","stock":"ogjhdstmu","asciiart":""}
