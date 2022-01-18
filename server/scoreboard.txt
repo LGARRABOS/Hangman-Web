@@ -1,1 +1,0 @@
-{"username":["elecstone","Magick","Magick","","Magick2","Magick2",""],"attempts":[10,0,0,0,1,1,0],"word":["escalier","maternelle","maternelle","maternelle","cabinet","cabinet","rentree"]}
