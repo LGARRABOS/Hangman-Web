@@ -1,1 +1,1 @@
-{"attempts":5,"word":"mousse","stock":"ogjhdstmu","asciiart":""}
+{"attempts":8,"word":"marche","stock":"mati","asciiart":""}

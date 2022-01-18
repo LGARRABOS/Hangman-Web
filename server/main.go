@@ -105,13 +105,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 		
 		if win {
-			won = "Congrats !"
+			won = "win"
 			start = 3
 			userlist, attlist, wordlist = piscine.AddScore(user, attempts, findword)
 			result = piscine.Result(userlist, attlist, wordlist)
 		}
 		if attempts <= 0 {
-			won = "The poor José is dead because of you !"
+			won = "loose"
 			start = 3
 			userlist, attlist, wordlist = piscine.AddScore(user, attempts, findword)
 			fmt.Println(userlist, attlist, wordlist)
