@@ -13,30 +13,26 @@
 </head>
 
 <body>
+    <img id="pendu" src="{{ .Image }}">
     <h1>
         {{ .TabUnderscore }}
     </h1>
     <h2>
         You have {{ .Attempts }} attempts remaining
     </h2>
-    <div style="width:300px"></div>
     <form method="POST" action="/hangman">
         <div class="topnav">
             <input type="text" placeholder="Choose a letter.." name="letter">
         </div>
-        <div style="width:300px"></div>
         <button class="myButton">
             Envoyer
         </button>
-
-        <div style="width:300px"></div>
         <h3>
             {{ .Won }}
         </h3>
         <h4>
             {{ .Used }}
         </h4>
-        <img src="{{ .Image }}" height="350px" width="200px">
     </form>
 
 </body>
