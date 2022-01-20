@@ -11,19 +11,20 @@ func TabToString(stock []byte) string {
 	return strstock
 }
 
-func AddScore(user string, attempts int, word string) ([]string, []int, []string) {
-	userlist, attlist, wordlist := DecodSB()
+func AddScore(user string, attempts int, word string, diff  string) ([]string, []int, []string, []string) {
+	userlist, attlist, wordlist, difflist:= DecodSB()
 	userlist = append(userlist, user)
 	attlist = append(attlist, attempts)
 	wordlist = append(wordlist, word)
-	EncodSB(userlist, attlist, wordlist)
-	return userlist, attlist, wordlist
+	difflist = append(difflist, diff)
+	EncodSB(userlist, attlist, wordlist, difflist)
+	return userlist, attlist, wordlist, difflist
 }
 
-func Result(userlist []string, attlist []int, wordlist []string) []string {
+func Result(userlist []string, attlist []int, wordlist []string, difflist []string) []string {
 	var score []string 
 	for i := 0; i < len(userlist); i++ {
-		score = append(score, userlist[i] +  "			" + strconv.Itoa(attlist[i]) + "			" + wordlist[i])
+		score = append(score, userlist[i] +  " " + strconv.Itoa(attlist[i]) + " " + wordlist[i] + " " + difflist[i])
 	}
 	return score
 }

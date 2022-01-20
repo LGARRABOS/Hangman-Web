@@ -5,7 +5,7 @@ import (
 	piscine "hangman/function"
 )
 
-func Hangman(letter string, start bool, w string, user string) (string, int, bool, string, string, string) {
+func Hangman(letter string, start bool, w string, user string, diff string) (string, int, bool, string, string, string) {
 	attempts := 10
 	lattempts := attempts
 	c := 0
