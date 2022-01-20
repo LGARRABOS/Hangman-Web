@@ -41,6 +41,7 @@ var (
 	userlist []string
 	attlist []int
 	wordlist []string
+	difflist []string
 	result []string
 	img string
 	imgpath = false
@@ -50,6 +51,7 @@ var (
 	accueil = template.Must(template.ParseFiles("../accueil.html"))
 	end = template.Must(template.ParseFiles("../final.html"))
 	score = template.Must(template.ParseFiles("../scoreboard.html"))
+	diff string
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -89,19 +91,22 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		if len(level) !=  0  {
 			if level[0] == "easy" {
 				word = "words.txt"
+				diff = "easy"
 			} else if level[0] == "medium" {
 				word = "words2.txt"
+				diff = "medium"
 			} else {
 				word = "words3.txt"
+				diff = "hard"
 			}
-			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, true, word, user)
+			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, true, word, user, diff)
 			start = 2
 			img = piscine.ChooseImage(attempts)
 			imgpath = true
 		}
 		if len(l) > 0 {
 			letter = l[0]
-			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, false, word, user)
+			hidden_word, attempts, win, won, stock, findword = h.Hangman(letter, false, word, user, diff)
 			img = piscine.ChooseImage(attempts)
 			imgpath = true
 		}
@@ -109,15 +114,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		if win {
 			won = "win"
 			start = 3
-			userlist, attlist, wordlist = piscine.AddScore(user, attempts, findword)
-			result = piscine.Result(userlist, attlist, wordlist)
+			userlist, attlist, wordlist, difflist= piscine.AddScore(user, attempts, findword, diff)
+			result = piscine.Result(userlist, attlist, wordlist, difflist)
 		}
 		if attempts <= 0 {
 			won = "loose"
 			start = 3
-			userlist, attlist, wordlist = piscine.AddScore(user, attempts, findword)
+			userlist, attlist, wordlist, difflist = piscine.AddScore(user, attempts, findword, diff)
 			fmt.Println(userlist, attlist, wordlist)
-			result = piscine.Result(userlist, attlist, wordlist)
+			result = piscine.Result(userlist, attlist, wordlist, difflist)
 		}
 	}
 	data := Data{

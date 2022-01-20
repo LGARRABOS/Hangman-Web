@@ -3,6 +3,10 @@ package piscine
 import (
 	"strconv"
 )
+/*
+Transforme les tableaux de byte en sstring,
+sert pour transformer le stock des lettres en string pour le faire apparaitre dans le site.
+*/
 func TabToString(stock []byte) string {
 	strstock := ""
 	for i := 0; i < len(stock); i++ {
@@ -10,24 +14,33 @@ func TabToString(stock []byte) string {
 	}
 	return strstock
 }
-
-func AddScore(user string, attempts int, word string) ([]string, []int, []string) {
-	userlist, attlist, wordlist := DecodSB()
+/*
+Ajoute les nouvelles données dans le JSON pour sotcker les score.
+*/
+func AddScore(user string, attempts int, word string, diff  string) ([]string, []int, []string, []string) {
+	userlist, attlist, wordlist, difflist:= DecodSB()
 	userlist = append(userlist, user)
 	attlist = append(attlist, attempts)
 	wordlist = append(wordlist, word)
-	EncodSB(userlist, attlist, wordlist)
-	return userlist, attlist, wordlist
+	difflist = append(difflist, diff)
+	EncodSB(userlist, attlist, wordlist, difflist)
+	return userlist, attlist, wordlist, difflist
 }
-
-func Result(userlist []string, attlist []int, wordlist []string) []string {
+/*
+transforme le scoreboard en un tableau de string pour print 
+ligne par lignesur le site web.
+*/
+func Result(userlist []string, attlist []int, wordlist []string, difflist []string) []string {
 	var score []string 
 	for i := 0; i < len(userlist); i++ {
-		score = append(score, userlist[i] +  "			" + strconv.Itoa(attlist[i]) + "			" + wordlist[i])
+		score = append(score, userlist[i] +  " " + strconv.Itoa(attlist[i]) + " " + wordlist[i] + " " + difflist[i])
 	}
 	return score
 }
-
+/* 
+choisir l'image qui sera afficher sur index.html
+selon le nombre de chance restante
+*/
 func ChooseImage(attempts int) string {
 	img := ""
 	switch attempts {

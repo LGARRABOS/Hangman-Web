@@ -15,6 +15,7 @@ type Scoreboard struct {
 	Username	[]string `json:"username"`
 	Attempts	[]int `json:"attempts"`
 	Word		[]string`json:"word"`
+	Difficulty	[]string`json:"difficulty"`
 }
 
 func Encod(a int, w string, s []byte) {
@@ -52,7 +53,7 @@ func Decod() (int, string, []byte) {
 
 
 }
-func DecodSB() ([]string, []int, []string) {
+func DecodSB() ([]string, []int, []string, []string) {
 	
 	var restore Scoreboard
 	json_data, err := os.ReadFile("scoreboard.txt")
@@ -65,11 +66,11 @@ func DecodSB() ([]string, []int, []string) {
 	if err2 != nil {
     	log.Fatal(err2)
     }
-	return restore.Username, restore.Attempts, restore.Word
+	return restore.Username, restore.Attempts, restore.Word, restore.Difficulty
 
 }
-func EncodSB(u []string, a []int, w []string) {
-	savescore := Scoreboard{Username: u, Attempts: a, Word: w}
+func EncodSB(u []string, a []int, w []string, d []string) {
+	savescore := Scoreboard{Username: u, Attempts: a, Word: w, Difficulty: d}
 	json_data, err := json.Marshal(savescore)
 	err2 := os.WriteFile("scoreboard.txt", json_data, 0666)
     if err != nil {
