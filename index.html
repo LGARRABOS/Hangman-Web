@@ -22,7 +22,7 @@
     </h2>
     <form method="POST" action="/hangman">
         <div class="topnav">
-            <input type="text" placeholder="Choose a letter.." name="letter">
+            <input class="letter" type="text" placeholder="Choose a letter.." name="letter">
         </div>
         <button class="myButton">
             Envoyer
@@ -33,6 +33,7 @@
         <h4>
             {{ .Used }}
         </h4>
+        
     </form>
 
 </body>

@@ -64,10 +64,10 @@ h2 {
 	top:1px;
 }
 .pendu {
-    height: 150px;
-    width: 300px;
-    position:relative;
-    top: 15%;
-    left: 40%;
-    transform: perspective(1px) translateY(300%);
+    height: 350px;
+    width: 200px;
+    position:absolute;
+
+    left: 1300px;
+    top:100px;
 }

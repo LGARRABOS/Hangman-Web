@@ -1,1 +1,1 @@
-{"attempts":10,"word":"classe","stock":"e"}
+{"attempts":10,"word":"bureau","stock":"u"}
