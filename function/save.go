@@ -10,7 +10,6 @@ type Save struct {
     Attempts  int `json:"attempts"`
 	Word      string `json:"word"`
 	Stock     string `json:"stock"`
-	Asciiart  string `json:"asciiart"`
 }
 type Scoreboard struct {
 	Username	[]string `json:"username"`
@@ -18,13 +17,13 @@ type Scoreboard struct {
 	Word		[]string`json:"word"`
 }
 
-func Encod(a int, w string, s []byte, ascii string) {
+func Encod(a int, w string, s []byte) {
 	
 	use := ""
 	for i:= 0; i < len(s); i++ {
 		use = use + string(s[i])
 	}
-	savegame := Save{Attempts: a, Word: w, Stock: use, Asciiart: ascii}
+	savegame := Save{Attempts: a, Word: w, Stock: use}
 	json_data, err := json.Marshal(savegame)
 	err2 := os.WriteFile("save.txt", json_data, 0666)
     if err != nil {
@@ -35,7 +34,7 @@ func Encod(a int, w string, s []byte, ascii string) {
     }
 }
 
-func Decod() (int, string, []byte, string) {
+func Decod() (int, string, []byte) {
 	var restore Save
 	var stock []byte
 	json_data, err := os.ReadFile("save.txt")
@@ -49,7 +48,7 @@ func Decod() (int, string, []byte, string) {
 	for i := 0; i < len(restore.Stock); i++ {
 		stock = append(stock, restore.Stock[i])
 	}
-	return restore.Attempts, restore.Word, stock, restore.Asciiart
+	return restore.Attempts, restore.Word, stock
 
 
 }

@@ -3,18 +3,14 @@ package piscine
 import (
 	"fmt"
 )
-func LetterType(tabunderscore []rune, asciiart string) string {
+func LetterType(tabunderscore []rune) string {
 	hidden_word := ""
-	if asciiart != "" {
-		Ascii_art_min(tabunderscore, asciiart)
-	} else {
-		for i := 0; i < len(tabunderscore); i++ {
-			fmt.Printf(string(tabunderscore[i]))
-			fmt.Printf(" ")
-			hidden_word = hidden_word + string(tabunderscore[i]) + " "
-		}
-		fmt.Println()
+	for i := 0; i < len(tabunderscore); i++ {
+		fmt.Printf(string(tabunderscore[i]))
+		fmt.Printf(" ")
+		hidden_word = hidden_word + string(tabunderscore[i]) + " "
 	}
+	fmt.Println()
 	return hidden_word
 }
 
