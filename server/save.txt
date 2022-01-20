@@ -1,1 +1,1 @@
-{"attempts":10,"word":"lecture","stock":"cletu","asciiart":""}
+{"attempts":10,"word":"classe","stock":"s"}
