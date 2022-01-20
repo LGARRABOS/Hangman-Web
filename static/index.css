@@ -3,8 +3,7 @@ body {
   background: linear-gradient(
     90deg,
     rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+    rgba(148, 187, 233, 1) 100%);
   text-align: center;
 }
 h1 {
@@ -55,7 +54,11 @@ div {
 	position:relative;
 	top:1px;
 }
-
-        
-
-        
+.pendu {
+  height: 150px;
+  width: 300px;
+  position:fixed;
+  top: 15%;
+  left: 40%;
+  transform: perspective(1px) translateY(300%);
+}

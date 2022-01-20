@@ -66,7 +66,7 @@ h2 {
 .pendu {
     height: 150px;
     width: 300px;
-    position: fixed;
+    position:relative;
     top: 15%;
     left: 40%;
     transform: perspective(1px) translateY(300%);
