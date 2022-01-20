@@ -57,7 +57,7 @@ div {
 .pendu {
   height: 150px;
   width: 300px;
-  position:relative;
+  position:fixed;
   top: 15%;
   left: 40%;
   transform: perspective(1px) translateY(300%);
