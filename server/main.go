@@ -44,15 +44,17 @@ var (
 	result []string
 	img string
 	imgpath = false
+	usr []string
+	home = template.Must(template.ParseFiles("../home.html"))
+	hangman = template.Must(template.ParseFiles("../index.html"))
+	accueil = template.Must(template.ParseFiles("../accueil.html"))
+	end = template.Must(template.ParseFiles("../final.html"))
+	score = template.Must(template.ParseFiles("../scoreboard.html"))
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 
-	home := template.Must(template.ParseFiles("../home.html"))
-	hangman := template.Must(template.ParseFiles("../index.html"))
-	accueil := template.Must(template.ParseFiles("../accueil.html"))
-	end := template.Must(template.ParseFiles("../final.html"))
-	score := template.Must(template.ParseFiles("../scoreboard.html"))
+
 	
 	win := false
 	letter := ""
@@ -76,7 +78,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 				start = 0
 			} else if redir[0] == "home" {
 				start = 1
-				usr := m["username"]
+				usr = m["username"]
 				if len(usr) != 0 {
 					user = usr[0]
 				}
