@@ -1,1 +1,1 @@
-{"username":["billy"],"attempts":[4],"word":["lavabo"],"difficulty":["easy"]}
+{"username":["billy",""],"attempts":[4,10],"word":["lavabo","portemanteau"],"difficulty":["easy","easy"]}
