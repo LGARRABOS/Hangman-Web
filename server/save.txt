@@ -1,1 +1,1 @@
-{"attempts":10,"word":"portemanteau","stock":"e"}
+{"attempts":3,"word":"etude","stock":"dgfenliosu"}
