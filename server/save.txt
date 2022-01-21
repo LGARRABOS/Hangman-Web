@@ -1,1 +1,1 @@
-{"attempts":4,"word":"lavabo","stock":"oatbnrmipl"}
+{"attempts":3,"word":"etude","stock":"dgfenliosu"}
