@@ -1,1 +1,1 @@
-{"username":["billy","","","","","",""],"attempts":[4,9,3,3,3,3,3],"word":["lavabo","rampe","etude","etude","etude","etude","etude"],"difficulty":["easy","easy","easy","easy","easy","easy","easy"]}
+{"username":["billy","","","","","","","",""],"attempts":[4,9,3,3,3,3,3,10,10],"word":["lavabo","rampe","etude","etude","etude","etude","etude","couloir","auberge"],"difficulty":["easy","easy","easy","easy","easy","easy","easy","easy","medium"]}

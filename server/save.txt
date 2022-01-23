@@ -1,1 +1,1 @@
-{"attempts":3,"word":"etude","stock":"dgfenliosu"}
+{"attempts":10,"word":"auberge","stock":"g"}
